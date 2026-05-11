@@ -1,0 +1,65 @@
+{% extends 'summarizer/base.html' %}
+
+{% block title %}
+Upload Notes
+{% endblock %}
+
+{% block content %}
+
+<section class="upload-section">
+
+<div class="container">
+
+<div class="row justify-content-center">
+
+<div class="col-lg-8">
+
+<div class="upload-card">
+
+<h2>
+Upload Your Notes
+</h2>
+
+<p>
+Paste your lecture notes or upload a PDF to generate AI-powered summaries.
+</p>
+
+<form>
+
+<div class="mb-4">
+
+<label class="form-label">
+Paste Notes
+</label>
+
+<textarea class="form-control notes-textarea" rows="10" placeholder="Paste your lecture notes here..."></textarea>
+
+</div>
+
+<div class="mb-4">
+
+<label class="form-label">
+Upload PDF
+</label>
+
+<input type="file" class="form-control">
+
+</div>
+
+<button type="submit" class="btn btn-primary">
+Generate Summary
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}
