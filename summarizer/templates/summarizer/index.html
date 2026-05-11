@@ -1,75 +1,157 @@
 {% extends 'summarizer/base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}
+Home
+{% endblock %}
 
 {% block content %}
-<section class="hero-section">
+
+<section class="hero-section" id="home">
 <div class="container">
-<div class="row align-items-center">
+
+<div class="row align-items-center gy-5">
+
 <div class="col-lg-6">
-<div class=hero-content>
+
+<div class="hero-content">
+
 <h1>
 Transform Long Notes into Smart AI Summaries
 </h1>
-</div>
+
 <p>
-Upload your lecture notes and instantly generate concise summaries, flashcards, and important exam questions using AI.
+Upload lecture notes and instantly generate concise summaries,flashcards,and important exam questions using AI.
 </p>
-<a href="#" class="btn btn-primary">
-Get Started
+
+<a href="/upload/" class="btn btn-primary">
+Start Summarizing
 </a>
-<a href="#" class="btn btn-outline-primary">
-Learn More
-</a>
+
 </div>
+</div>
+
 <div class="col-lg-6">
-    <div class="hero-image-card">
-    AI Dashboard Preview
+
+<div class="hero-image-card">
+
+<h4 class="mb-4">
+AI Summary Preview
+</h4>
+
+<div class="summary-preview">
+
+<p>• Important AI-generated points</p>
+
+<p>• Quick revision highlights</p>
+
+<p>• Exam-focused summaries</p>
+
+</div>
+
 </div>
 </div>
+
 </div>
-  <!-- Content here -->
 </div>
 </section>
-<section class="features-section">
+
+<section class="features-section" id="features">
 <div class="container">
-<h2 class="text-center">
-    Powerful AI Features for Smarter Learning
+
+<div class="text-center mb-5">
+
+<h2>
+Powerful AI Features for Smarter Learning
 </h2>
-<p class="text-center">
-    Everything you need to simplify studying and improve revision efficiency.
+
+<p>
+Everything you need to simplify studying and improve revision efficiency.
 </p>
-<div class="row">
-    <div class="col-lg-3 col-md-6">
-        <div class="feature-card">
-            <i class="bi bi-file-text"></i>
-            <h4>Smart Summaries</h4>
-            <p>Generate concise AI-powered summaries from lengthy lecture notes instantly.</p>
-        </div>
-    </div>
+
+</div>
+
+<div class="row g-4">
+
 <div class="col-lg-3 col-md-6">
-    <div class="feature-card">
-        <i class="bi bi-journal-text"></i>
-        <h4>Flash Cards</h4>
-        <p>Create quick revision flashcards for efficient learning and memorization.</p>
-    </div>
+<div class="feature-card">
+
+<i class="bi bi-file-text"></i>
+
+<h4>
+Smart Summaries
+</h4>
+
+<p>
+Generate concise AI-powered summaries from lengthy lecture notes instantly.
+</p>
+
 </div>
+</div>
+
 <div class="col-lg-3 col-md-6">
-    <div class="feature-card">
-        <i class="bi bi-patch-question"></i>
-        <h4>Exam Questions</h4>
-        <p>Automatically generate important exam-oriented questions from uploaded notes.</p>
-    </div>
+<div class="feature-card">
+
+<i class="bi bi-journal-text"></i>
+
+<h4>
+Flash Cards
+</h4>
+
+<p>
+Create quick revision flashcards for efficient learning and memorization.
+</p>
+
 </div>
+</div>
+
 <div class="col-lg-3 col-md-6">
-    <div class="feature-card">
-        <i class="bi bi-lightbulb"></i>
-        <h4>Quick Revision</h4>
-        <p>Review key concepts rapidly using AI-generated revision points and highlights.</p>
-    </div>
+<div class="feature-card">
+
+<i class="bi bi-patch-question"></i>
+
+<h4>
+Exam Questions
+</h4>
+
+<p>
+Automatically generate important exam-oriented questions from uploaded notes.
+</p>
+
 </div>
 </div>
+
+<div class="col-lg-3 col-md-6">
+<div class="feature-card">
+
+<i class="bi bi-lightbulb"></i>
+
+<h4>
+Quick Revision
+</h4>
+
+<p>
+Review key concepts rapidly using AI-generated revision points and highlights.
+</p>
+
+</div>
+</div>
+
 </div>
 </div>
 </section>
+
+<section class="cta-section" id="about">
+<div class="container text-center">
+
+<h2>
+Smarter Studying Starts with Better Notes
+</h2>
+
+<p>
+Use AI-powered summaries to save time,improve revision,and focus on what matters most.
+</p>
+
+</div>
+</section>
+
 {% endblock %}
