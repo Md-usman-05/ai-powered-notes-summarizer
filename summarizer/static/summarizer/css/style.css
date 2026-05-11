@@ -1,0 +1,43 @@
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #F8FAFC;
+    color: #1E293B;
+}
+.navbar-brand{
+    color: #4F46E5;
+}
+.nav-link{
+    font-weight: 500;
+    color: #334155;
+}
+.nav-link:hover{
+    color: #4F46E5;
+}
+.hero-section{
+    padding: 100px 0;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+.hero-content{
+    max-width: 550px;
+}
+.btn{
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+.hero-image-card{
+    background: white;
+    padding: 60px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    text-align: center;
+}
+footer{
+    padding: 30px 0;
+    text-align: center;
+    background: white;
+    margin-top: 80px;
+}
