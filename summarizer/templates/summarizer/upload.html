@@ -1,39 +1,111 @@
-﻿{% extends 'summarizer/base.html' %}
+﻿{% extends 'summarizer/dashboard_base.html' %}
 
-{% block title %}Upload Notes{% endblock %}
+{% block title %}
+Create Summary
+{% endblock %}
 
 {% block content %}
+
 <section class="upload-section">
+
 <div class="container">
+
 <div class="row justify-content-center">
+
 <div class="col-lg-8">
+
 <div class="upload-card">
-{% if messages %}
-{% for message in messages %}
-<div class="alert alert-{{ message.tags|default:'info' }}" role="alert">{{ message }}</div>
-{% endfor %}
-{% endif %}
-<h2>Upload Your Notes</h2>
-<p>Paste your lecture notes or upload a text file to generate AI-powered summaries.</p>
-<form method="post" action="{% url 'upload' %}" enctype="multipart/form-data">
+
+<div class="text-center mb-5">
+
+<h2 class="mb-3">
+Create AI Summary
+</h2>
+
+<p class="text-muted mb-0">
+Upload PDF, DOCX, TXT files or paste your notes manually.
+</p>
+
+</div>
+
+<form method="POST" enctype="multipart/form-data">
+
 {% csrf_token %}
+
 <div class="mb-4">
-<label class="form-label">Title</label>
-<input type="text" name="title" class="form-control" placeholder="Example: Operating system unit 2">
+
+<label class="form-label fw-semibold">
+Upload File
+</label>
+
+<input
+type="file"
+name="notes_file"
+class="form-control"
+accept=".pdf,.doc,.docx,.txt"
+>
+
+<p class="small text-muted mt-2 mb-0">
+Supported formats: PDF, DOCX, TXT
+</p>
+
 </div>
+
+<div class="text-center my-4">
+
+<span class="fw-semibold text-muted">
+OR
+</span>
+
+</div>
+
 <div class="mb-4">
-<label class="form-label">Paste Notes</label>
-<textarea name="notes" class="form-control notes-textarea" rows="10" placeholder="Paste your lecture notes here..."></textarea>
+
+<label class="form-label fw-semibold">
+Paste Notes
+</label>
+
+<textarea
+name="notes_text"
+class="form-control notes-textarea"
+rows="10"
+placeholder="Paste your lecture notes here..."
+></textarea>
+
 </div>
-<div class="mb-4">
-<label class="form-label">Upload Notes File</label>
-<input type="file" name="notes_file" class="form-control" accept=".txt,.md,.csv,.pdf">
+
+<div class="d-flex flex-column flex-md-row gap-3">
+
+<button
+type="submit"
+class="btn btn-primary flex-fill"
+>
+
+Generate Summary
+
+</button>
+
+<a
+href="{% url 'dashboard' %}"
+class="btn btn-outline-primary flex-fill"
+>
+
+Back to Dashboard
+
+</a>
+
 </div>
-<button type="submit" class="btn btn-primary">Generate Summary</button>
+
 </form>
+
 </div>
+
 </div>
+
 </div>
+
 </div>
+
 </section>
+
 {% endblock %}
