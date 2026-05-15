@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@fontsource/poppins": "^5.2.7",
+    "axios": "^1.16.1"
+  }
+}

@@ -1,39 +1,82 @@
-import re
+import os
+import requests
+
+API_URL = "https://router.huggingface.co/hf-inference/models/facebook/bart-large-cnn"
+
+headers = {
+    "Authorization": f"Bearer {os.getenv('HF_TOKEN')}"
+}
 
 
-def summarize_notes(text, max_sentences=4):
-    cleaned = " ".join(text.split())
-    if not cleaned:
-        return ""
+def generate_summary(text):
 
-    sentences = re.split(r"(?<=[.!?])\s+", cleaned)
-    sentences = [sentence.strip() for sentence in sentences if sentence.strip()]
-    if len(sentences) <= max_sentences:
-        return cleaned
-
-    keywords = {
-        "important",
-        "definition",
-        "process",
-        "steps",
-        "types",
-        "advantages",
-        "disadvantages",
-        "example",
-        "conclusion",
-        "therefore",
-        "because",
-        "exam",
+    payload = {
+        "inputs": text,
+        "parameters": {
+            "max_length": 180,
+            "min_length": 60,
+            "do_sample": False
+        }
     }
 
-    scored = []
-    for index, sentence in enumerate(sentences):
-        words = re.findall(r"[A-Za-z0-9]+", sentence.lower())
-        keyword_hits = sum(1 for word in words if word in keywords)
-        length_score = min(len(words), 30) / 30
-        position_score = 1 if index in (0, len(sentences) - 1) else 0
-        scored.append((keyword_hits + length_score + position_score, index, sentence))
+    try:
 
-    selected = sorted(scored, reverse=True)[:max_sentences]
-    selected.sort(key=lambda item: item[1])
-    return " ".join(item[2] for item in selected)
+        response = requests.post(
+            API_URL,
+            headers=headers,
+            json=payload
+        )
+
+        print("STATUS:", response.status_code)
+        print("TEXT:", response.text)
+
+        result = response.json()
+
+        if isinstance(result, list):
+
+            summary = result[0]["summary_text"]
+
+            bullet_points = generate_bullet_points(text)
+
+            final_output = f"""
+ SUMMARY
+
+{summary}
+
+
+KEY POINTS
+
+{bullet_points}
+"""
+
+            return final_output
+
+        elif isinstance(result, dict):
+
+            return result.get(
+                "error",
+                "Unable to generate summary."
+            )
+
+        return "Unexpected response."
+
+    except Exception as e:
+
+        return f"Error: {str(e)}"
+
+
+def generate_bullet_points(text):
+
+    sentences = text.split(".")
+
+    points = []
+
+    for sentence in sentences[:6]:
+
+        sentence = sentence.strip()
+
+        if len(sentence) > 20:
+
+            points.append(f"• {sentence}")
+
+    return "\n".join(points)
