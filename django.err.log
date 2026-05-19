@@ -1,0 +1,200 @@
+Watching for file changes with StatReloader
+Bad Request: /api/register/
+[18/May/2026 21:07:52] "GET / HTTP/1.1" 200 4019
+[18/May/2026 21:07:53] "POST /api/register/ HTTP/1.1" 400 48
+[18/May/2026 21:07:53,068] - Broken pipe from ('127.0.0.1', 62240)
+[18/May/2026 21:07:53,304] - Broken pipe from ('127.0.0.1', 62241)
+[18/May/2026 21:08:15] "POST /api/register/ HTTP/1.1" 200 543
+[18/May/2026 21:08:15,372] - Broken pipe from ('127.0.0.1', 62248)
+[18/May/2026 21:08:32] "POST /api/register/ HTTP/1.1" 200 543
+[18/May/2026 21:08:32,133] - Broken pipe from ('127.0.0.1', 62251)
+[18/May/2026 21:10:10] "OPTIONS /api/login/ HTTP/1.1" 200 0
+[18/May/2026 21:10:11] "POST /api/login/ HTTP/1.1" 200 520
+[18/May/2026 21:10:11] "OPTIONS /summaries/ HTTP/1.1" 200 0
+[18/May/2026 21:10:11] "OPTIONS /summaries/ HTTP/1.1" 200 0
+[18/May/2026 21:10:11] "GET /summaries/ HTTP/1.1" 200 2
+[18/May/2026 21:10:11] "GET /summaries/ HTTP/1.1" 200 2
+Unauthorized: /summaries/
+[18/May/2026 21:19:52] "GET /summaries/ HTTP/1.1" 401 58
+[18/May/2026 21:19:52] "GET / HTTP/1.1" 200 4019
+[18/May/2026 21:19:52,793] - Broken pipe from ('127.0.0.1', 61769)
+[18/May/2026 21:19:53,019] - Broken pipe from ('127.0.0.1', 61768)
+[18/May/2026 21:21:12] "GET / HTTP/1.1" 200 4019
+[18/May/2026 21:21:12] "GET /static/summarizer/css/js/main.js HTTP/1.1" 200 0
+[18/May/2026 21:21:12] "GET /static/summarizer/css/style.css HTTP/1.1" 200 2871
+[18/May/2026 21:21:49] "GET /register/ HTTP/1.1" 200 2592
+[18/May/2026 21:21:49] "GET /static/summarizer/css/auth.css HTTP/1.1" 200 864
+[18/May/2026 21:26:43] "POST /api/register/ HTTP/1.1" 200 6146
+[18/May/2026 21:26:43] "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+[18/May/2026 21:26:43] "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+[18/May/2026 21:26:43] "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+[18/May/2026 21:26:43] "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+[18/May/2026 21:26:43] "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+[18/May/2026 21:26:43] "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+[18/May/2026 21:26:43] "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+[18/May/2026 21:26:43] "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+[18/May/2026 21:26:43] "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+[18/May/2026 21:26:44] "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+[18/May/2026 21:26:44] "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+[18/May/2026 21:26:44] "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+[18/May/2026 21:27:56] "GET / HTTP/1.1" 200 4019
+[18/May/2026 21:27:57] "GET / HTTP/1.1" 200 4019
+[18/May/2026 21:27:57] "GET /static/summarizer/css/style.css HTTP/1.1" 200 2871
+[18/May/2026 21:27:57] "GET /summaries HTTP/1.1" 301 0
+Unauthorized: /summaries/
+[18/May/2026 21:27:57] "GET /summaries/ HTTP/1.1" 401 5063
+[18/May/2026 21:28:07] "GET /upload/ HTTP/1.1" 200 3116
+[18/May/2026 21:28:54] "POST /upload/ HTTP/1.1" 200 3116
+C:\Users\K BALAJI\OneDrive\Desktop\project_ai\ai-powered-notes-summarizer\summarizer\services.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\K BALAJI\OneDrive\Desktop\project_ai\ai-powered-notes-summarizer\summarizer\views.py changed, reloading.
+Watching for file changes with StatReloader
+[18/May/2026 21:33:09] "POST /api/login/ HTTP/1.1" 200 520
+[18/May/2026 21:33:09] "POST /generate-summary/ HTTP/1.1" 200 510
+[18/May/2026 21:33:09,711] - Broken pipe from ('127.0.0.1', 55463)
+C:\Users\K BALAJI\OneDrive\Desktop\project_ai\ai-powered-notes-summarizer\summarizer\views.py changed, reloading.
+Watching for file changes with StatReloader
+Forbidden (CSRF cookie not set.): /upload/
+[18/May/2026 21:35:32] "POST /upload/ HTTP/1.1" 403 2855
+Forbidden (CSRF cookie not set.): /upload/
+[18/May/2026 21:35:45] "POST /upload/ HTTP/1.1" 403 2855
+[18/May/2026 21:41:05] "OPTIONS /api/register/ HTTP/1.1" 200 0
+Unauthorized: /api/register/
+[18/May/2026 21:41:05] "POST /api/register/ HTTP/1.1" 401 172
+Unauthorized: /api/register/
+[18/May/2026 21:41:13] "POST /api/register/ HTTP/1.1" 401 172
+[18/May/2026 21:41:27] "OPTIONS /api/login/ HTTP/1.1" 200 0
+Unauthorized: /api/login/
+[18/May/2026 21:41:27] "POST /api/login/ HTTP/1.1" 401 172
+Unauthorized: /api/login/
+[18/May/2026 21:41:56] "POST /api/login/ HTTP/1.1" 401 172
+[18/May/2026 21:43:24] "GET / HTTP/1.1" 200 4019
+[18/May/2026 21:43:30] "GET /upload/ HTTP/1.1" 200 3146
+[18/May/2026 21:46:34] "POST /upload/ HTTP/1.1" 200 4310
+[18/May/2026 21:46:43] "GET /upload/ HTTP/1.1" 200 3146
+[18/May/2026 21:48:33] "GET /logout/ HTTP/1.1" 200 4019
+[18/May/2026 21:50:28] "GET /upload/ HTTP/1.1" 200 3146
+[18/May/2026 21:51:18] "GET /logout/ HTTP/1.1" 200 4019
+[18/May/2026 21:56:37] "OPTIONS /api/register/ HTTP/1.1" 200 0
+[18/May/2026 21:56:38] "POST /api/register/ HTTP/1.1" 200 543
+[18/May/2026 21:56:54] "POST /api/login/ HTTP/1.1" 200 520
+[18/May/2026 21:56:54] "GET /summaries/ HTTP/1.1" 200 2
+[18/May/2026 21:56:54] "GET /summaries/ HTTP/1.1" 200 2
+[18/May/2026 21:58:26] "OPTIONS /generate-summary/ HTTP/1.1" 200 0
+[18/May/2026 21:58:26] "POST /generate-summary/ HTTP/1.1" 200 1868
+[18/May/2026 21:58:55] "GET / HTTP/1.1" 200 4019
+[18/May/2026 21:58:58] "GET /register/ HTTP/1.1" 200 2592
+Bad Request: /api/register/
+[18/May/2026 21:59:41] "POST /api/register/ HTTP/1.1" 400 5580
+[18/May/2026 21:59:42] "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+[18/May/2026 21:59:42] "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+[18/May/2026 21:59:42] "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+[18/May/2026 21:59:42] "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+[18/May/2026 21:59:42] "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+[18/May/2026 21:59:42] "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+[18/May/2026 21:59:42] "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+[18/May/2026 21:59:42] "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+[18/May/2026 21:59:42] "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+[18/May/2026 21:59:42] "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+[18/May/2026 21:59:42] "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+[18/May/2026 21:59:42] "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+[18/May/2026 22:00:02] "GET /login/ HTTP/1.1" 200 2188
+[18/May/2026 22:00:08] "GET / HTTP/1.1" 200 4019
+[18/May/2026 22:00:10] "GET /upload/ HTTP/1.1" 200 3146
+[18/May/2026 22:01:52] "GET / HTTP/1.1" 200 4019
+[18/May/2026 22:01:57] "GET /register/ HTTP/1.1" 200 2592
+Bad Request: /api/register/
+[18/May/2026 22:02:30] "POST /api/register/ HTTP/1.1" 400 5580
+Bad Request: /api/register/
+[18/May/2026 22:02:41] "POST /api/register/ HTTP/1.1" 400 5580
+[18/May/2026 22:02:48] "GET /login/ HTTP/1.1" 200 2188
+[18/May/2026 22:02:51] "GET / HTTP/1.1" 200 4019
+[18/May/2026 22:02:54] "GET /upload/ HTTP/1.1" 200 3146
+[18/May/2026 22:03:06] "POST /upload/ HTTP/1.1" 200 4310
+[18/May/2026 22:05:03] "GET / HTTP/1.1" 200 4019
+[18/May/2026 22:05:03] "GET /static/summarizer/css/style.css HTTP/1.1" 200 2871
+[18/May/2026 22:05:03] "GET /upload HTTP/1.1" 301 0
+[18/May/2026 22:05:03] "GET /summaries HTTP/1.1" 301 0
+Unauthorized: /summaries/
+[18/May/2026 22:05:03] "GET /summaries/ HTTP/1.1" 401 5063
+[18/May/2026 22:05:03] "GET /upload/ HTTP/1.1" 200 3146
+C:\Users\K BALAJI\OneDrive\Desktop\project_ai\ai-powered-notes-summarizer\summarizer\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+[18/May/2026 22:07:57] "POST /api/register/ HTTP/1.1" 200 543
+[18/May/2026 22:07:57] "POST /api/login/ HTTP/1.1" 200 520
+[18/May/2026 22:07:57,778] - Broken pipe from ('127.0.0.1', 60480)
+[19/May/2026 13:27:48] "GET / HTTP/1.1" 200 4019
+[19/May/2026 13:27:48] "GET /static/summarizer/css/style.css HTTP/1.1" 304 0
+[19/May/2026 13:27:48] "GET /static/summarizer/css/js/main.js HTTP/1.1" 304 0
+[19/May/2026 13:28:02] "GET / HTTP/1.1" 200 4019
+[19/May/2026 13:28:02] "GET /static/summarizer/css/style.css HTTP/1.1" 200 2871
+[19/May/2026 13:28:02] "GET /upload HTTP/1.1" 301 0
+[19/May/2026 13:28:02] "GET /summaries HTTP/1.1" 301 0
+[19/May/2026 13:28:02] "GET /upload/ HTTP/1.1" 200 3146
+Unauthorized: /summaries/
+[19/May/2026 13:28:02] "GET /summaries/ HTTP/1.1" 401 5063
+[19/May/2026 13:28:48] "OPTIONS /api/register/ HTTP/1.1" 200 0
+[19/May/2026 13:28:49] "POST /api/register/ HTTP/1.1" 200 543
+[19/May/2026 13:29:01] "OPTIONS /api/login/ HTTP/1.1" 200 0
+[19/May/2026 13:29:01] "POST /api/login/ HTTP/1.1" 200 520
+[19/May/2026 13:29:01] "OPTIONS /summaries/ HTTP/1.1" 200 0
+[19/May/2026 13:29:01] "OPTIONS /summaries/ HTTP/1.1" 200 0
+[19/May/2026 13:29:01] "GET /summaries/ HTTP/1.1" 200 2
+[19/May/2026 13:29:01] "GET /summaries/ HTTP/1.1" 200 2
+[19/May/2026 13:36:16] "OPTIONS /generate-summary/ HTTP/1.1" 200 0
+Bad Request: /generate-summary/
+[19/May/2026 13:36:17] "POST /generate-summary/ HTTP/1.1" 400 104
+[19/May/2026 13:39:16] "POST /generate-summary/ HTTP/1.1" 200 17955
+C:\Users\K BALAJI\OneDrive\Desktop\project_ai\ai-powered-notes-summarizer\summarizer\views.py changed, reloading.
+Watching for file changes with StatReloader
+[19/May/2026 13:46:19] "POST /api/login/ HTTP/1.1" 200 520
+[19/May/2026 13:46:20,141] - Broken pipe from ('127.0.0.1', 65232)
+[19/May/2026 19:37:13] "GET / HTTP/1.1" 200 4019
+[19/May/2026 19:37:13] "GET /static/summarizer/css/style.css HTTP/1.1" 200 2871
+[19/May/2026 19:37:13] "GET /upload HTTP/1.1" 301 0
+[19/May/2026 19:37:13] "GET /summaries HTTP/1.1" 301 0
+[19/May/2026 19:37:13] "GET /upload/ HTTP/1.1" 200 3268
+Unauthorized: /summaries/
+[19/May/2026 19:37:14] "GET /summaries/ HTTP/1.1" 401 5063
+[19/May/2026 19:37:34] "OPTIONS /summaries/ HTTP/1.1" 200 0
+[19/May/2026 19:37:34] "OPTIONS /summaries/ HTTP/1.1" 200 0
+[19/May/2026 19:37:34] "GET /summaries/ HTTP/1.1" 200 17957
+[19/May/2026 19:37:34] "GET /summaries/ HTTP/1.1" 200 17957
+[19/May/2026 19:38:31] "OPTIONS /api/register/ HTTP/1.1" 200 0
+[19/May/2026 19:38:32] "POST /api/register/ HTTP/1.1" 200 543
+[19/May/2026 19:38:46] "OPTIONS /api/login/ HTTP/1.1" 200 0
+[19/May/2026 19:38:46] "POST /api/login/ HTTP/1.1" 200 520
+[19/May/2026 19:38:46] "GET /summaries/ HTTP/1.1" 200 2
+[19/May/2026 19:38:46] "GET /summaries/ HTTP/1.1" 200 2
+[19/May/2026 19:39:27] "OPTIONS /generate-summary/ HTTP/1.1" 200 0
+[19/May/2026 19:39:28] "POST /generate-summary/ HTTP/1.1" 200 1687
+[19/May/2026 19:39:59] "GET /summaries/ HTTP/1.1" 200 1689
+[19/May/2026 19:39:59] "GET /summaries/ HTTP/1.1" 200 1689
+[19/May/2026 19:44:45] "OPTIONS /api/register/ HTTP/1.1" 200 0
+Unauthorized: /api/register/
+[19/May/2026 19:44:45] "POST /api/register/ HTTP/1.1" 401 172
+Unauthorized: /api/register/
+[19/May/2026 19:45:36] "POST /api/register/ HTTP/1.1" 401 172
+Unauthorized: /api/register/
+[19/May/2026 19:47:18] "POST /api/register/ HTTP/1.1" 401 172
+[19/May/2026 19:48:04] "POST /api/register/ HTTP/1.1" 200 543
+[19/May/2026 19:57:13] "POST /api/register/ HTTP/1.1" 200 543
+[19/May/2026 19:57:28] "OPTIONS /api/login/ HTTP/1.1" 200 0
+[19/May/2026 19:57:30] "POST /api/login/ HTTP/1.1" 200 520
+[19/May/2026 19:57:30] "OPTIONS /summaries/ HTTP/1.1" 200 0
+[19/May/2026 19:57:30] "OPTIONS /summaries/ HTTP/1.1" 200 0
+[19/May/2026 19:57:30] "GET /summaries/ HTTP/1.1" 200 2
+[19/May/2026 19:57:30] "GET /summaries/ HTTP/1.1" 200 2
+[19/May/2026 19:58:20] "OPTIONS /generate-summary/ HTTP/1.1" 200 0
+Bad Request: /generate-summary/
+[19/May/2026 19:58:21] "POST /generate-summary/ HTTP/1.1" 400 86
+[19/May/2026 19:58:47] "POST /generate-summary/ HTTP/1.1" 200 17955
+[19/May/2026 20:01:53] "POST /generate-summary/ HTTP/1.1" 200 17955
+[19/May/2026 20:04:08] "GET /summaries/ HTTP/1.1" 200 35913
+[19/May/2026 20:04:08] "GET /summaries/ HTTP/1.1" 200 35913
+[19/May/2026 20:05:52] "POST /api/register/ HTTP/1.1" 200 543
+[19/May/2026 20:06:10] "POST /api/login/ HTTP/1.1" 200 520
+[19/May/2026 20:06:10] "GET /summaries/ HTTP/1.1" 200 2
+[19/May/2026 20:06:10] "GET /summaries/ HTTP/1.1" 200 2
+[19/May/2026 20:06:34] "POST /generate-summary/ HTTP/1.1" 200 1769
+[19/May/2026 20:08:26] "POST /generate-summary/ HTTP/1.1" 200 1769

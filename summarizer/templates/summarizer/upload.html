@@ -23,7 +23,7 @@ Create AI Summary
 </h2>
 
 <p class="text-muted mb-0">
-Upload PDF, DOCX, TXT files or paste your notes manually.
+Upload PDF, DOCX, text files or paste your notes manually.
 </p>
 
 </div>
@@ -31,6 +31,12 @@ Upload PDF, DOCX, TXT files or paste your notes manually.
 <form method="POST" enctype="multipart/form-data">
 
 {% csrf_token %}
+
+{% if error %}
+<div class="alert alert-danger mb-4">
+{{ error }}
+</div>
+{% endif %}
 
 <div class="mb-4">
 
@@ -42,11 +48,11 @@ Upload File
 type="file"
 name="notes_file"
 class="form-control"
-accept=".pdf,.doc,.docx,.txt"
+accept=".pdf,.docx,.txt,.md,.csv,.json,.html,.htm,.js,.jsx,.ts,.tsx,.py,.java,.c,.cpp,.cs,.php,.rb,.go,.rs,.xml,.yaml,.yml,.log"
 >
 
 <p class="small text-muted mt-2 mb-0">
-Supported formats: PDF, DOCX, TXT
+Supported: PDF, DOCX, TXT, CSV, MD, HTML, JSON, code and other readable text files.
 </p>
 
 </div>

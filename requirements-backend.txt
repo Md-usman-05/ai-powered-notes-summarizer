@@ -1,0 +1,9 @@
+Django==6.0.5
+beautifulsoup4==4.14.3
+django-cors-headers==4.9.0
+djangorestframework==3.17.1
+djangorestframework-simplejwt==5.5.1
+pypdf==6.11.0
+python-docx==1.2.0
+python-dotenv==1.2.2
+requests==2.34.2

@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import { Link, useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import api from "../services/api"
 
 function Register() {
@@ -16,6 +16,13 @@ function Register() {
 
   const [loading, setLoading] = useState(false)
 
+  const [message, setMessage] = useState("")
+
+  useEffect(() => {
+    localStorage.removeItem("access")
+    localStorage.removeItem("refresh")
+  }, [])
+
   const handleChange = (e) => {
 
     setFormData({
@@ -30,19 +37,20 @@ function Register() {
     e.preventDefault()
 
     if (formData.password !== formData.confirm_password) {
-      alert("Passwords do not match")
+      setMessage("Passwords do not match")
       return
     }
 
     try {
 
       setLoading(true)
+      setMessage("")
 
       await api.post("api/register/", formData)
 
-      alert("Account created successfully")
-
-      navigate("/login")
+      navigate(
+        `/login?registered=1&email=${encodeURIComponent(formData.email)}`
+      )
 
     }
 
@@ -54,7 +62,7 @@ function Register() {
 
     if (typeof error.response.data === "string") {
 
-      alert(error.response.data)
+      setMessage(error.response.data)
 
     }
 
@@ -66,7 +74,7 @@ function Register() {
 
       const firstError = errors[firstKey]
 
-      alert(
+      setMessage(
         Array.isArray(firstError)
           ? firstError[0]
           : firstError
@@ -78,7 +86,7 @@ function Register() {
 
   else {
 
-    alert("Registration failed")
+    setMessage("Registration failed")
 
   }
 
@@ -205,6 +213,13 @@ function Register() {
                     }
 
                   </button>
+
+                  {
+                    message &&
+                    <div className="alert alert-danger mt-3 mb-0">
+                      {message}
+                    </div>
+                  }
 
                 </form>
 

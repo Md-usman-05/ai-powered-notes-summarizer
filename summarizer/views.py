@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from types import SimpleNamespace
 
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import (
@@ -16,6 +17,7 @@ from .serializers import (
 )
 
 from .services import generate_summary
+from .file_extractors import UnsupportedFileError, extract_text_from_upload
 
 
 def index(request):
@@ -50,6 +52,46 @@ def logout_view(request):
 
 
 def upload_view(request):
+    if request.method == "POST":
+        notes = request.POST.get("notes_text", "")
+        uploaded_file = request.FILES.get("notes_file")
+
+        if uploaded_file:
+            try:
+                notes = extract_text_from_upload(uploaded_file)
+            except UnsupportedFileError as exc:
+                return render(
+                    request,
+                    "summarizer/upload.html",
+                    {"error": str(exc)},
+                )
+
+        if not notes.strip():
+            return render(
+                request,
+                "summarizer/upload.html",
+                {"error": "Upload a text file or paste notes first."},
+            )
+
+        summary = generate_summary(notes)
+        title = " ".join(notes.split()[:5]) + "..."
+
+        if request.user.is_authenticated:
+            note_summary = NoteSummary.objects.create(
+                user=request.user,
+                title=title,
+                original_text=notes,
+                summary=summary,
+                uploaded_file=uploaded_file if uploaded_file else None,
+            )
+        else:
+            note_summary = SimpleNamespace(title=title, summary=summary)
+
+        return render(
+            request,
+            "summarizer/result.html",
+            {"note_summary": note_summary},
+        )
 
     return render(
         request,
@@ -163,6 +205,16 @@ def generate_summary_api(request):
     try:
 
         notes = request.data.get("notes")
+        uploaded_file = request.FILES.get("notes_file")
+
+        if uploaded_file:
+            try:
+                notes = extract_text_from_upload(uploaded_file)
+            except UnsupportedFileError as exc:
+                return Response(
+                    {"error": str(exc)},
+                    status=400,
+                )
 
         if not notes:
 
@@ -186,6 +238,8 @@ def generate_summary_api(request):
             original_text=notes,
 
             summary=summary,
+
+            uploaded_file=uploaded_file if uploaded_file else None,
         )
 
         return Response(

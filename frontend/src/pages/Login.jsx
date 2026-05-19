@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, useSearchParams } from "react-router-dom"
 import { useState } from "react"
 import api from "../services/api"
 
@@ -7,12 +7,24 @@ function Login() {
 
   const navigate = useNavigate()
 
+  const [searchParams] = useSearchParams()
+
+  const registeredEmail = searchParams.get("email") || ""
+
   const [formData, setFormData] = useState({
-    email: "",
+    email: registeredEmail,
     password: "",
   })
 
   const [loading, setLoading] = useState(false)
+
+  const [message] = useState(
+    searchParams.get("registered")
+      ? "Account created successfully. Please login."
+      : ""
+  )
+
+  const [errorMessage, setErrorMessage] = useState("")
 
   const handleChange = (e) => {
 
@@ -30,6 +42,7 @@ function Login() {
     try {
 
       setLoading(true)
+      setErrorMessage("")
 
       const response = await api.post(
         "api/login/",
@@ -45,8 +58,6 @@ localStorage.setItem(
     "refresh",
     response.data.refresh
 )
-      alert("Login successful")
-
       navigate("/dashboard")
 
     }
@@ -57,15 +68,21 @@ localStorage.setItem(
 
       if (error.response?.data) {
 
-        alert(
-          JSON.stringify(error.response.data)
+        const errorData = error.response.data
+
+        setErrorMessage(
+          typeof errorData === "string"
+            ? errorData
+            : errorData.detail ||
+              errorData.non_field_errors?.[0] ||
+              JSON.stringify(errorData)
         )
 
       }
 
       else {
 
-        alert("Login failed")
+        setErrorMessage("Login failed")
 
       }
 
@@ -154,6 +171,20 @@ localStorage.setItem(
                     }
 
                   </button>
+
+                  {
+                    message &&
+                    <div className="alert alert-success mt-3 mb-0">
+                      {message}
+                    </div>
+                  }
+
+                  {
+                    errorMessage &&
+                    <div className="alert alert-danger mt-3 mb-0">
+                      {errorMessage}
+                    </div>
+                  }
 
                 </form>
 

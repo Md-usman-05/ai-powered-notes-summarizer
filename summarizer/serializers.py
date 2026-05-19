@@ -60,30 +60,18 @@ class RegisterSerializer(serializers.Serializer):
                 }
             )
 
-        username = (
-
+        username_base = (
             attrs.get("username")
+            or attrs.get("name")
+            or email.split("@")[0]
+        ).strip().replace(" ", "_")
 
-            or
+        username = username_base
+        counter = 1
 
-            attrs.get("name")
-
-            or
-
-            email.split("@")[0]
-
-        )
-
-        if User.objects.filter(
-            username__iexact=username
-        ).exists():
-
-            raise serializers.ValidationError(
-                {
-                    "username":
-                    "Username already exists."
-                }
-            )
+        while User.objects.filter(username__iexact=username).exists():
+            counter += 1
+            username = f"{username_base}{counter}"
 
         attrs["email"] = email
 

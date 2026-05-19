@@ -6,7 +6,11 @@ function Upload() {
 
     const [notes, setNotes] = useState("");
 
+    const [notesFile, setNotesFile] = useState(null);
+
     const [summary, setSummary] = useState("");
+
+    const [error, setError] = useState("");
 
     const [loading, setLoading] = useState(false);
 
@@ -39,13 +43,26 @@ function Upload() {
         setLoading(true);
 
         setSummary("");
+        setError("");
 
         try {
+            const formData = new FormData();
+
+            if (notesFile) {
+                formData.append("notes_file", notesFile);
+            }
+
+            if (notes.trim()) {
+                formData.append("notes", notes);
+            }
 
             const response = await API.post(
                 "generate-summary/",
+                formData,
                 {
-                    notes: notes
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
                 }
             );
 
@@ -55,7 +72,10 @@ function Upload() {
 
         catch (error) {
 
-            alert("Failed to generate summary");
+            setError(
+                error.response?.data?.error ||
+                "Failed to generate summary"
+            );
 
         }
 
@@ -82,7 +102,7 @@ function Upload() {
                         </h1>
 
                         <p className="text-muted mb-0">
-                            Paste your notes and get a concise summary instantly.
+                            Upload PDF, DOCX, text files, or paste your notes to generate a summary.
                         </p>
 
                     </div>
@@ -108,15 +128,39 @@ function Upload() {
 
                             <form onSubmit={handleSubmit}>
 
+                                <label className="form-label fw-semibold">
+                                    Upload File
+                                </label>
+
+                                <input
+                                    type="file"
+                                    className="form-control mb-3"
+                                    accept=".pdf,.docx,.txt,.md,.csv,.json,.html,.htm,.js,.jsx,.ts,.tsx,.py,.java,.c,.cpp,.cs,.php,.rb,.go,.rs,.xml,.yaml,.yml,.log"
+                                    onChange={(e) =>
+                                        setNotesFile(e.target.files[0] || null)
+                                    }
+                                />
+
+                                <p className="small text-muted">
+                                    Supported: PDF, DOCX, TXT, CSV, MD, HTML, JSON, code and other readable text files.
+                                </p>
+
                                 <textarea
                                     className="form-control simple-textarea"
-                                    placeholder="Paste your notes here..."
+                                    placeholder="Or paste your notes here..."
                                     value={notes}
                                     onChange={(e) =>
                                         setNotes(e.target.value)
                                     }
-                                    required
+                                    required={!notesFile}
                                 />
+
+                                {
+                                    error &&
+                                    <div className="alert alert-danger mt-3 mb-0">
+                                        {error}
+                                    </div>
+                                }
 
                                 <button
                                     type="submit"
