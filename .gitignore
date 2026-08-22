@@ -22,3 +22,4 @@ frontend/dist/
 # IDE
 .vscode/
 .idea/
+frontend/.vite/
