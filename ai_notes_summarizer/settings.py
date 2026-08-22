@@ -24,10 +24,13 @@ load_dotenv()
 
 SECRET_KEY = os.environ.get(
     "DJANGO_SECRET_KEY",
-    "django-insecure-development-only-change-this-in-production",
+    "django-insecure-8nsi328^n4bb3f+^f$u)fv&8m_p^3cx&m7q4p@i!p30+0^^soz",
 )
 
-DEBUG = os.environ.get("DJANGO_DEBUG", "True").lower() == "true"
+DEBUG = os.environ.get(
+    "DJANGO_DEBUG",
+    "True",
+).lower() == "true"
 
 
 ALLOWED_HOSTS = [
@@ -53,9 +56,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "rest_framework",
-    "corsheaders",
-
     "summarizer",
+    "corsheaders",
 ]
 
 
@@ -67,17 +69,11 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
 
     "django.middleware.security.SecurityMiddleware",
-
     "django.contrib.sessions.middleware.SessionMiddleware",
-
     "django.middleware.common.CommonMiddleware",
-
     "django.middleware.csrf.CsrfViewMiddleware",
-
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-
     "django.contrib.messages.middleware.MessageMiddleware",
-
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
@@ -98,17 +94,12 @@ WSGI_APPLICATION = "ai_notes_summarizer.wsgi.application"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-
         "DIRS": [],
-
         "APP_DIRS": True,
-
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.request",
-
                 "django.contrib.auth.context_processors.auth",
-
                 "django.contrib.messages.context_processors.messages",
             ],
         },
@@ -134,23 +125,28 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME":
-        "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "UserAttributeSimilarityValidator"
+        ),
     },
-
     {
-        "NAME":
-        "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "MinimumLengthValidator"
+        ),
     },
-
     {
-        "NAME":
-        "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "CommonPasswordValidator"
+        ),
     },
-
     {
-        "NAME":
-        "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "NumericPasswordValidator"
+        ),
     },
 ]
 
@@ -169,35 +165,25 @@ USE_TZ = True
 
 
 # ============================================================
-# STATIC FILES
+# STATIC & MEDIA
 # ============================================================
 
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-
-# ============================================================
-# MEDIA FILES
-# ============================================================
-
-MEDIA_URL = "/media/"
+MEDIA_URL = "media/"
 
 MEDIA_ROOT = BASE_DIR / "media"
 
 
 # ============================================================
-# DEFAULT PRIMARY KEY
-# ============================================================
-
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-
-# ============================================================
-# LOGIN
+# DJANGO DEFAULTS
 # ============================================================
 
 LOGIN_URL = "login"
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # ============================================================
@@ -216,7 +202,6 @@ REST_FRAMEWORK = {
 # ============================================================
 
 SIMPLE_JWT = {
-
     "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
 
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
@@ -233,34 +218,7 @@ SIMPLE_JWT = {
 # CORS
 # ============================================================
 
-if DEBUG:
-
-    CORS_ALLOW_ALL_ORIGINS = True
-
-else:
-
-    CORS_ALLOWED_ORIGINS = [
-        origin.strip()
-        for origin in os.environ.get(
-            "CORS_ALLOWED_ORIGINS",
-            "",
-        ).split(",")
-        if origin.strip()
-    ]
-
-
-# ============================================================
-# CSRF
-# ============================================================
-
-CSRF_TRUSTED_ORIGINS = [
-    origin.strip()
-    for origin in os.environ.get(
-        "CSRF_TRUSTED_ORIGINS",
-        "",
-    ).split(",")
-    if origin.strip()
-]
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 # ============================================================
@@ -303,21 +261,10 @@ EMAIL_HOST_PASSWORD = os.environ.get(
     "",
 )
 
-EMAIL_USE_TLS = (
-    os.environ.get(
-        "EMAIL_USE_TLS",
-        "true",
-    ).lower()
-    == "true"
-)
-
-EMAIL_USE_SSL = (
-    os.environ.get(
-        "EMAIL_USE_SSL",
-        "false",
-    ).lower()
-    == "true"
-)
+EMAIL_USE_TLS = os.environ.get(
+    "EMAIL_USE_TLS",
+    "true",
+).lower() == "true"
 
 
 OTP_EMAIL_READY = bool(
@@ -325,29 +272,3 @@ OTP_EMAIL_READY = bool(
     and EMAIL_HOST_USER
     and EMAIL_HOST_PASSWORD
 )
-
-
-# ============================================================
-# PRODUCTION SECURITY
-# ============================================================
-
-if not DEBUG:
-
-    SECURE_PROXY_SSL_HEADER = (
-        "HTTP_X_FORWARDED_PROTO",
-        "https",
-    )
-
-    SECURE_SSL_REDIRECT = True
-
-    SESSION_COOKIE_SECURE = True
-
-    CSRF_COOKIE_SECURE = True
-
-    SECURE_BROWSER_XSS_FILTER = True
-
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-
-    X_FRAME_OPTIONS = "DENY"
-
-    SECURE_REFERRER_POLICY = "same-origin"
