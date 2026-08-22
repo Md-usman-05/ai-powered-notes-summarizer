@@ -1,76 +1,33 @@
-{% extends 'summarizer/auth_base.html' %}
+﻿{% extends 'summarizer/auth_base.html' %}
 
-{% block title %}
-Login
-{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block content %}
-
 <section class="auth-section">
-
 <div class="container">
-
 <div class="row justify-content-center">
-
 <div class="col-lg-5 col-md-6">
-
 <div class="auth-card">
-
-<h2>
-Welcome Back
-</h2>
-
-<p>
-Login to continue using NoteMind AI.
-</p>
-
-<form>
-
+<h2>Welcome Back</h2>
+<p>Login to continue using NoteMind AI.</p>
+<form method="post" action="{% url 'api-login' %}">
+{% csrf_token %}
 <div class="mb-3">
-
-<label class="form-label">
-Email Address
-</label>
-
-<input type="email" class="form-control" placeholder="Enter your email">
-
+<label class="form-label">Email Address</label>
+<input type="email" name="email" class="form-control" placeholder="Enter your email" required>
 </div>
-
 <div class="mb-3">
-
-<label class="form-label">
-Password
-</label>
-
-<input type="password" class="form-control" placeholder="Enter your password">
-
+<label class="form-label">Password</label>
+<input type="password" name="password" class="form-control" placeholder="Enter your password" required>
 </div>
-
-<button type="submit" class="btn btn-primary">
-Login
-</button>
-
+<button type="submit" class="btn btn-primary">Login</button>
 </form>
-
 <div class="auth-redirect">
-
-<p>
-Don't have an account?
-<a href="/register/">
-Create Account
-</a>
-</p>
-
+<p>Don't have an account? <a href="{% url 'register' %}">Create Account</a></p>
 </div>
-
 </div>
-
 </div>
-
 </div>
-
 </div>
-
 </section>
-
 {% endblock %}

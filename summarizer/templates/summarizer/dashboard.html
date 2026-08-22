@@ -1,0 +1,84 @@
+﻿{% extends 'summarizer/dashboard_base.html' %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<section class="upload-section">
+
+<div class="container">
+
+<div class="mb-5">
+
+<h2 class="mb-1">
+Your Summaries
+</h2>
+
+<p class="mb-0 text-muted">
+Welcome, {{ jwt_user.first_name|default:jwt_user.email }}.
+</p>
+
+</div>
+
+{% if summaries %}
+
+<div class="row g-4">
+
+{% for item in summaries %}
+
+<div class="col-lg-4 col-md-6">
+
+<div class="feature-card h-100 text-start">
+
+<h4>
+{{ item.title }}
+</h4>
+
+<p>
+{{ item.summary|truncatewords:24 }}
+</p>
+
+<p class="small text-muted mb-3">
+{{ item.created_at|date:"M d, Y H:i" }}
+</p>
+
+<a
+href="{% url 'result' item.id %}"
+class="btn btn-outline-primary"
+>
+
+View
+
+</a>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="upload-card text-center">
+
+<h3 class="mb-3">
+No summaries yet
+</h3>
+
+<p class="mb-0 text-muted">
+Create your first AI summary to get started.
+</p>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</section>
+
+{% endblock %}

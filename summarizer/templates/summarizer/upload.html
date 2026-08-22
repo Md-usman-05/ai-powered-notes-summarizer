@@ -1,7 +1,7 @@
-{% extends 'summarizer/base.html' %}
+﻿{% extends 'summarizer/dashboard_base.html' %}
 
 {% block title %}
-Upload Notes
+Create Summary
 {% endblock %}
 
 {% block content %}
@@ -16,39 +16,91 @@ Upload Notes
 
 <div class="upload-card">
 
-<h2>
-Upload Your Notes
+<div class="text-center mb-5">
+
+<h2 class="mb-3">
+Create AI Summary
 </h2>
 
-<p>
-Paste your lecture notes or upload a PDF to generate AI-powered summaries.
+<p class="text-muted mb-0">
+Upload PDF, DOCX, text files or paste your notes manually.
 </p>
 
-<form>
+</div>
+
+<form method="POST" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+{% if error %}
+<div class="alert alert-danger mb-4">
+{{ error }}
+</div>
+{% endif %}
 
 <div class="mb-4">
 
-<label class="form-label">
+<label class="form-label fw-semibold">
+Upload File
+</label>
+
+<input
+type="file"
+name="notes_file"
+class="form-control"
+accept=".pdf,.docx,.txt,.md,.csv,.json,.html,.htm,.js,.jsx,.ts,.tsx,.py,.java,.c,.cpp,.cs,.php,.rb,.go,.rs,.xml,.yaml,.yml,.log"
+>
+
+<p class="small text-muted mt-2 mb-0">
+Supported: PDF, DOCX, TXT, CSV, MD, HTML, JSON, code and other readable text files.
+</p>
+
+</div>
+
+<div class="text-center my-4">
+
+<span class="fw-semibold text-muted">
+OR
+</span>
+
+</div>
+
+<div class="mb-4">
+
+<label class="form-label fw-semibold">
 Paste Notes
 </label>
 
-<textarea class="form-control notes-textarea" rows="10" placeholder="Paste your lecture notes here..."></textarea>
+<textarea
+name="notes_text"
+class="form-control notes-textarea"
+rows="10"
+placeholder="Paste your lecture notes here..."
+></textarea>
 
 </div>
 
-<div class="mb-4">
+<div class="d-flex flex-column flex-md-row gap-3">
 
-<label class="form-label">
-Upload PDF
-</label>
+<button
+type="submit"
+class="btn btn-primary flex-fill"
+>
 
-<input type="file" class="form-control">
-
-</div>
-
-<button type="submit" class="btn btn-primary">
 Generate Summary
+
 </button>
+
+<a
+href="{% url 'dashboard' %}"
+class="btn btn-outline-primary flex-fill"
+>
+
+Back to Dashboard
+
+</a>
+
+</div>
 
 </form>
 
