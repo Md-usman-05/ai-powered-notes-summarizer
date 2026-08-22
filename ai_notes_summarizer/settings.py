@@ -27,17 +27,13 @@ SECRET_KEY = os.environ.get(
     "django-insecure-8nsi328^n4bb3f+^f$u)fv&8m_p^3cx&m7q4p@i!p30+0^^soz",
 )
 
-DEBUG = os.environ.get(
-    "DJANGO_DEBUG",
-    "True",
-).lower() == "true"
-
+DEBUG = os.environ.get("DJANGO_DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = [
     host.strip()
     for host in os.environ.get(
         "DJANGO_ALLOWED_HOSTS",
-        "127.0.0.1,localhost",
+        "127.0.0.1,localhost,notemind-backend-euy4.onrender.com"
     ).split(",")
     if host.strip()
 ]
