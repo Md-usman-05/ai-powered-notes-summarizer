@@ -150,15 +150,6 @@ class LoginSerializer(serializers.Serializer):
         return attrs
 
 
-class NoteSummarySerializer(serializers.ModelSerializer):
-
-    class Meta:
-
-        model = NoteSummary
-
-        fields = "__all__"
-
-
 def get_tokens_for_user(user):
 
     refresh = RefreshToken.for_user(user)
@@ -188,3 +179,4 @@ class NoteSummarySerializer(serializers.ModelSerializer):
             "uploaded_file",
             "created_at",
         ]
+        read_only_fields = ["id", "original_text", "uploaded_file", "created_at"]

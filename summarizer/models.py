@@ -38,3 +38,15 @@ class LoginActivity(models.Model):
 
     def __str__(self):
         return f"{self.email} logged in at {self.logged_in_at:%Y-%m-%d %H:%M}"
+
+
+class OTP(models.Model):
+    """A short-lived verification code used only for password recovery."""
+
+    email = models.EmailField(db_index=True)
+    otp = models.CharField(max_length=128)
+    created_at = models.DateTimeField(auto_now_add=True)
+    used_at = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        ordering = ["-created_at"]

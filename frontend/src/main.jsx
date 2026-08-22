@@ -7,6 +7,11 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
 import './styles/global.css'
+import './styles/account.css'
+import './styles/redesign.css'
+import './styles/simple-ui.css'
+import './styles/experience.css'
+import './styles/history-grid.css'
 
 import App from './App.jsx'
 
