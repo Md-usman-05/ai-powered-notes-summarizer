@@ -924,13 +924,15 @@ def generate_summary_api(request):
 
     try:
 
-        notes = request.data.get(
-            "notes"
-        )
+        notes = request.data.get("notes", "")
+        uploaded_file = request.FILES.get("notes_file")
 
-        uploaded_file = request.FILES.get(
-            "notes_file"
-        )
+        print("========== SUMMARY REQUEST ==========")
+        print("Content-Type:", request.content_type)
+        print("Uploaded file:", uploaded_file)
+        print("Request FILES:", request.FILES)
+        print("Request DATA keys:", list(request.data.keys()))
+        print("=====================================")
 
         if uploaded_file:
 
@@ -940,118 +942,89 @@ def generate_summary_api(request):
                     uploaded_file
                 )
 
+                print(
+                    "Extracted characters:",
+                    len(notes)
+                )
+
             except UnsupportedFileError as exc:
 
                 return Response(
-
                     {
-                        "error":
-                        str(exc)
+                        "error": str(exc)
                     },
-
                     status=400,
-
                 )
 
-        if not notes or not notes.strip():
+        if not notes or not str(notes).strip():
 
             return Response(
-
                 {
                     "error":
-                    "Notes are required"
+                    "No readable notes were received. "
+                    "Please upload a readable document or paste your notes."
                 },
-
                 status=400,
-
             )
 
-        summary = generate_summary(
-            notes
-        )
+        notes = str(notes).strip()
+
+        summary = generate_summary(notes)
 
         title = (
-
             " ".join(
                 notes.split()[:5]
             )
-
             + "..."
-
         )
 
         if uploaded_file:
-
             uploaded_file.seek(0)
 
         saved_summary = NoteSummary.objects.create(
-
             user=request.user,
-
             title=title,
-
             original_text=notes,
-
             summary=summary,
-
             uploaded_file=(
-
                 uploaded_file
                 if uploaded_file
                 else None
-
             ),
-
         )
 
         return Response(
-
             {
-
-                "id":
-                saved_summary.id,
-
-                "title":
-                saved_summary.title,
-
-                "summary":
-                saved_summary.summary,
-
-                "created_at":
-                saved_summary.created_at,
-
+                "id": saved_summary.id,
+                "title": saved_summary.title,
+                "summary": saved_summary.summary,
+                "created_at": saved_summary.created_at,
             }
-
         )
 
     except SummaryGenerationError as exc:
 
         return Response(
-
             {
-                "error":
-                str(exc)
+                "error": str(exc)
             },
-
             status=503,
-
         )
 
-    except Exception:
+    except Exception as exc:
+
+        print(
+            "SUMMARY GENERATION ERROR:",
+            repr(exc)
+        )
 
         return Response(
-
             {
-
                 "error":
                 "Unable to generate a summary right now. Please try again."
-
             },
-
             status=500,
-
         )
-
 
 # ============================================================
 # DELETE SUMMARY API

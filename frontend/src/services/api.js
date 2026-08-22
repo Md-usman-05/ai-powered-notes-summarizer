@@ -1,54 +1,26 @@
 import axios from "axios";
 
 /*
- * Production backend
+ * Vite automatically loads:
+ *
+ * .env.development  -> local development
+ * .env.production   -> production build
  */
-const PRODUCTION_API_URL =
-    "https://notemind-backend-euy4.onrender.com/";
 
-/*
- * Read VITE_API_URL if available.
- */
-const configuredApiUrl =
-    import.meta.env.VITE_API_URL?.trim();
-
-/*
- * Prevent localhost from ever being used by the deployed frontend.
- */
-const isLocalUrl = (url) => {
-    if (!url) return false;
-
-    return (
-        url.includes("127.0.0.1") ||
-        url.includes("localhost")
+const API_BASE_URL =
+    import.meta.env.VITE_API_URL ||
+    (
+        import.meta.env.PROD
+            ? "https://notemind-backend-euy4.onrender.com/"
+            : "http://127.0.0.1:8000/"
     );
-};
 
-let API_BASE_URL;
-
-if (import.meta.env.PROD) {
-
-    /*
-     * Production:
-     * Never use localhost.
-     */
-    if (configuredApiUrl && !isLocalUrl(configuredApiUrl)) {
-        API_BASE_URL = configuredApiUrl;
-    } else {
-        API_BASE_URL = PRODUCTION_API_URL;
-    }
-
-} else {
-
-    /*
-     * Local development.
-     */
-    API_BASE_URL =
-        configuredApiUrl ||
-        "http://127.0.0.1:8000/";
-}
-
+console.log("=================================");
+console.log("Environment:", import.meta.env.MODE);
+console.log("Production:", import.meta.env.PROD);
 console.log("API Base URL:", API_BASE_URL);
+console.log("=================================");
+
 
 const API = axios.create({
     baseURL: API_BASE_URL,
@@ -58,9 +30,9 @@ const API = axios.create({
 });
 
 
-/* =========================
+/* ================================
    PUBLIC ENDPOINTS
-========================= */
+================================ */
 
 const publicEndpoints = [
     "api/login/",
@@ -72,9 +44,9 @@ const publicEndpoints = [
 ];
 
 
-/* =========================
+/* ================================
    REQUEST INTERCEPTOR
-========================= */
+================================ */
 
 API.interceptors.request.use(
     (config) => {
@@ -82,7 +54,8 @@ API.interceptors.request.use(
         const url = config.url || "";
 
         const isPublic = publicEndpoints.some(
-            (endpoint) => url.includes(endpoint)
+            (endpoint) =>
+                url.includes(endpoint)
         );
 
         if (!isPublic) {
@@ -103,13 +76,15 @@ API.interceptors.request.use(
         return config;
     },
 
-    (error) => Promise.reject(error)
+    (error) => {
+        return Promise.reject(error);
+    }
 );
 
 
-/* =========================
+/* ================================
    TOKEN REFRESH
-========================= */
+================================ */
 
 let refreshPromise = null;
 
@@ -128,9 +103,9 @@ const signOut = () => {
 };
 
 
-/* =========================
+/* ================================
    RESPONSE INTERCEPTOR
-========================= */
+================================ */
 
 API.interceptors.response.use(
 
@@ -146,10 +121,7 @@ API.interceptors.response.use(
                 "api/token/refresh/"
             );
 
-        /*
-         * If access token expired,
-         * try refreshing it.
-         */
+
         if (
             error.response?.status === 401 &&
             !originalRequest?._retry &&

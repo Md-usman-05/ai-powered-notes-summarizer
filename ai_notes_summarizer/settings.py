@@ -272,3 +272,17 @@ OTP_EMAIL_READY = bool(
     and EMAIL_HOST_USER
     and EMAIL_HOST_PASSWORD
 )
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+
+    "https://ai-powered-notes-summarizer-fyf1.onrender.com",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+
+    "https://ai-powered-notes-summarizer-fyf1.onrender.com",
+]
