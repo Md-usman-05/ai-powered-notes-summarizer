@@ -9,11 +9,9 @@ import axios from "axios";
 
 const API_BASE_URL =
     import.meta.env.VITE_API_URL ||
-    (
-        import.meta.env.PROD
-            ? "https://notemind-backend-euy4.onrender.com/"
-            : "http://127.0.0.1:8000/"
-    );
+    (import.meta.env.DEV
+        ? "http://127.0.0.1:8000/"
+        : "https://notemind-backend-euy4.onrender.com/");
 
 console.log("=================================");
 console.log("Environment:", import.meta.env.MODE);
